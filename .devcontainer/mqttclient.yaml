@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testpubsub
+  labels:
+    app: publisher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publisher
+  template:
+    metadata:
+      labels:
+        app: publisher
+    spec:
+      containers:
+      - name: publisher
+        image: edgecharts.azurecr.io/spiffe/gotest:latest
+        volumeMounts:
+          - name: iotedge-spiffe-agent-socket
+            mountPath: /run/iotedge/sockets/
+      volumes:
+      - name: iotedge-spiffe-agent-socket
+        hostPath:
+          path: /run/iotedge/sockets/
+          type: DirectoryOrCreate

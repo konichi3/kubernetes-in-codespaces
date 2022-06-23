@@ -1,0 +1,43 @@
+# Entries - These are the identities the mqtt broker will work with since it talks to identity manager
+[[entry]]
+spiffe_id = "1"
+spiffe_id_path = "agent"
+[entry.attestation_config]
+type = "NODE"
+[entry.attestation_config.content]
+value = ["AGENTSERVICEACCOUNT:iotedge-spiffe-agent"]
+plugin = "PSAT"
+
+[[entry]]
+spiffe_id = "2"
+spiffe_id_path = "mqttbroker"
+[entry.attestation_config]
+type = "WORKLOAD"
+[entry.attestation_config.content]
+value = ["PODLABELS:app:mqttbroker"]
+plugin = "K8S"
+parent_id = "1"
+
+# These are sample entries for subscriber and publisher if anyone wants to use them
+# or how would one go about creating them. The attestation_config here says, the spiffe
+# identity manager will give identity to a pod with label matching in value and the spiffe id
+# will be under trust domain path specified in spiffe_id_path
+[[entry]]
+spiffe_id = "3"
+spiffe_id_path = "subscriber"
+[entry.attestation_config]
+type = "WORKLOAD"
+[entry.attestation_config.content]
+value = ["PODLABELS:app:subscriber"]
+plugin = "K8S"
+parent_id = "1"
+
+[[entry]]
+spiffe_id = "4"
+spiffe_id_path = "publisher"
+[entry.attestation_config]
+type = "WORKLOAD"
+[entry.attestation_config.content]
+value = ["PODLABELS:app:publisher"]
+plugin = "K8S"
+parent_id = "1"

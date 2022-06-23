@@ -13,5 +13,5 @@ echo "post-create complete"
 echo "$(date +'%Y-%m-%d %H:%M:%S')    post-create complete" >> "$HOME/status"
 
 # install E4K componentns as part of Codespace creation
-helm install e4k oci://edgecharts.azurecr.io/helm/az-e4k --set-file e4kspiffe.identitymanager.configToml='/workspaces/kubernetes-in-codespaces/.devcontainer/override-identities.toml' --set-string e4kmqtt.authenticator.type=”null”
+helm install e4k oci://edgecharts.azurecr.io/helm/az-e4k --set-file e4kspiffe.identitymanager.configToml='/workspaces/kubernetes-in-codespaces/.devcontainer/override-identities.toml' --set e4kspiffe.server.jwt.key_ttl=1000
 kubectl apply -f /workspaces/kubernetes-in-codespaces/.devcontainer/mqttclient.yaml

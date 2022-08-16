@@ -17,6 +17,6 @@ helm install e4k oci://edgecharts.azurecr.io/helm/az-e4k -n e4k --create-namespa
 kubectl apply -f /workspaces/kubernetes-in-codespaces/.devcontainer/mqttclient.yaml
 
 # install E4K CLI
-OS='linux'; ARCH='amd64'; curl -sSL -o kubectl-aziot_e4k-linux-amd64.tar.gz https://github.com/Azure/e4k-cli/releases/tag/v0.0.1/kubectl-aziot_e4k-$OS-$ARCH.tar.gz;
+OS='linux'; ARCH='amd64'; curl -sSL -o kubectl-aziot_e4k-linux-amd64.tar.gz https://github.com/Azure/e4k-cli/releases/tag/v0.0.1/kubectl-aziot_e4k-$OS-$ARCH.tar.gz
 tar -xzf kubectl-aziot_e4k-linux-amd64.tar.gz
 cp kubectl-aziot_e4k /usr/local/bin
